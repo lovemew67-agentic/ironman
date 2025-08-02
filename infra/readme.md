@@ -2,12 +2,12 @@
 
 ## cluster
 
-- docker desktop
-- docker compose
-- kind
+- wip:  docker desktop
+- wip:  docker compose
+- wip:  kind
 
 ## worker
 
-- android studio
-- github runner
-- xcode
+- wip:  android studio
+- wip:  github runner
+- wip:  xcode

@@ -1,0 +1,11 @@
+# ➜  ironman git:(main) ✗ task --version
+# Task version: v3.41.0 (h1:giUddhe0XZLbEWIQ/MuTPipR9ek+teulIA5xf/2IHXg=)
+# ➜  ironman git:(main) ✗ task --taskfile=taskfile say-hello
+# task: [say-hello] echo "hello from taskfile"
+# hello from taskfile
+# ➜  ironman git:(main) ✗
+
+version: 3
+tasks:
+  say-hello:
+    - echo "hello from taskfile"

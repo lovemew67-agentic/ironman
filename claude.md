@@ -1,4 +1,6 @@
-# claude.md
+<!-- https://github.com/lovemew67/claude-code-agents -->
+
+# CLAUDE.md
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
@@ -14,7 +16,7 @@ This is an AI agent development framework designed for collaborative software en
 ## Agent Architecture
 
 ### Core Agent Types
-
+w
 The system defines specialized agents in `/draft/`:
 
 - `@strategic-planner`: Requirements analysis, technical design, and task planning (no code execution)
