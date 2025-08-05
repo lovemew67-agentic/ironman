@@ -26,16 +26,16 @@ metrics_generator:
     external_labels:
       source: tempo
   storage:
-    path: /tempo/data/generator/wal
+    path: /data/generator/wal
   traces_storage:
-    path: /tempo/data/generator/traces
+    path: /data/generator/traces
 storage:
   trace:
     backend: local
     wal:
-      path: /tempo/data/wal
+      path: /data/wal
     local:
-      path: /tempo/data/blocks
+      path: /data/blocks
 overrides:
   defaults:
     metrics_generator:

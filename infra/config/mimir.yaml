@@ -24,17 +24,17 @@ ingester:
     replication_factor: 1
 blocks_storage:
   tsdb:
-    dir: /mimir/data/tsdb
+    dir: /data/tsdb
   bucket_store:
-    sync_dir: /mimir/data/tsdb-sync
+    sync_dir: /data/tsdb-sync
   backend: filesystem
   filesystem:
-    dir: /mimir/data/blocks
+    dir: /data/blocks
 compactor:
-  data_dir: /mimir/data/compactor
+  data_dir: /data/compactor
 ruler_storage:
   backend: local
   local:
-    directory: /mimir/data/rules
+    directory: /data/rules
 alertmanager:
   enable_api: false

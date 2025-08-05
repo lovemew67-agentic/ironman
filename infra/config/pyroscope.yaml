@@ -5,4 +5,4 @@ memberlist:
   bind_port: 7946
   advertise_port: 7947
 pyroscopedb:
-  data_path: /pyroscope/data
+  data_path: /data

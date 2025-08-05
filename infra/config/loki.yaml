@@ -6,11 +6,11 @@ memberlist:
   bind_port: 7940
   advertise_port: 7941
 common:
-  path_prefix: /loki/data
+  path_prefix: /data
   storage:
     filesystem:
-      chunks_directory: /loki/data/chunks
-      rules_directory: /loki/data/rules
+      chunks_directory: /data/chunks
+      rules_directory: /data/rules
   replication_factor: 1
   ring:
     kvstore:
