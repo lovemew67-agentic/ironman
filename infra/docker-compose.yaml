@@ -1,0 +1,51 @@
+services:
+  loki:
+    image: grafana/loki:3.4.2
+    restart: always
+    ports:
+      - 3100:3100/tcp
+    volumes:
+      - ./config/loki.yaml:/etc/loki/local-config.yaml
+      - ./data/loki:/loki
+  mimir:
+    image: grafana/mimir:2.16.0
+    restart: always
+    command:
+      - --config.file=/etc/mimir.yaml
+    ports:
+      - 9090:9090/tcp
+    volumes:
+      - ./config/mimir.yaml:/etc/mimir.yaml
+      - ./data/mimir:/mimir
+  tempo:
+    image: grafana/tempo:2.7.2
+    restart: always
+    command:
+      - -config.file=/etc/tempo.yaml
+    expose:
+      - 3100/tcp
+    ports:
+      - 4317:4317/tcp # otlp grpc
+    volumes:
+      - ./config/tempo.yaml:/etc/tempo.yaml
+      - ./data/tempo:/tempo
+  pyroscope:
+    image: grafana/pyroscope:1.13.2
+    restart: always
+    ports:
+      - 4040:4040/tcp
+    volumes:
+      - ./config/pyroscope.yaml:/etc/pyroscope/config.yaml
+      - ./data/pyroscope:/pyroscope
+  grafana:
+    image: grafana/grafana:11.6.0
+    restart: always
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_AUTH_DISABLE_LOGIN_FORM=true
+      - GF_FEATURE_TOGGLES_ENABLE=traceqlEditor traceQLStreaming metricsSummary
+    ports:
+      - 3000:3000/tcp
+    volumes:
+      - ./config/grafana_datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml

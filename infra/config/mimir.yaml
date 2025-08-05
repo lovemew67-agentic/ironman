@@ -1,0 +1,40 @@
+multitenancy_enabled: false
+server:
+  http_listen_port: 9000
+  grpc_listen_port: 9090
+  grpc_server_max_recv_msg_size: 104857600
+  grpc_server_max_send_msg_size: 104857600
+  grpc_server_max_concurrent_streams: 1000
+memberlist:
+  bind_port: 7942
+  advertise_port: 7943
+distributor:
+  ring:
+    kvstore:
+      store: memberlist
+  pool:
+    health_check_ingesters: true
+ingester:
+  ring:
+    min_ready_duration: 0s
+    final_sleep: 0s
+    num_tokens: 512
+    kvstore:
+      store: inmemory
+    replication_factor: 1
+blocks_storage:
+  tsdb:
+    dir: /mimir/data/tsdb
+  bucket_store:
+    sync_dir: /mimir/data/tsdb-sync
+  backend: filesystem
+  filesystem:
+    dir: /mimir/data/blocks
+compactor:
+  data_dir: /mimir/data/compactor
+ruler_storage:
+  backend: local
+  local:
+    directory: /mimir/data/rules
+alertmanager:
+  enable_api: false

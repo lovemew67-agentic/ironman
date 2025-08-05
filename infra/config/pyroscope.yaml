@@ -1,0 +1,8 @@
+server:
+  http_listen_port: 4040
+  grpc_listen_port: 9290
+memberlist:
+  bind_port: 7946
+  advertise_port: 7947
+pyroscopedb:
+  data_path: /pyroscope/data
