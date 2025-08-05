@@ -37,6 +37,5 @@
 
 ## worker (mac mini intel 2018)
 
-- wip:  android studio
 - wip:  github runner
 - wip:  xcode
