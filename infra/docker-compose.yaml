@@ -1,5 +1,6 @@
 ---
 services:
+  # observability
   loki:
     image: grafana/loki:3.4.2
     restart: always
