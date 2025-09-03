@@ -16,7 +16,7 @@ This is an AI agent development framework designed for collaborative software en
 ## Agent Architecture
 
 ### Core Agent Types
-w
+
 The system defines specialized agents in `/draft/`:
 
 - `@strategic-planner`: Requirements analysis, technical design, and task planning (no code execution)
@@ -35,7 +35,7 @@ The system defines specialized agents in `/draft/`:
 
 ```
 .
-├── draft/                  # Agent definitions and specifications
+├── personas/              # Agent definitions and specifications
 │   ├── code-reviewer.md   # Code review agent spec
 │   ├── task-executor.md   # Implementation agent spec
 │   ├── strategic-planner.md # Planning agent spec
@@ -59,6 +59,24 @@ The system defines specialized agents in `/draft/`:
 ```
 
 ## Key Workflow Principles
+
+## Primary Directives
+
+- Strictly Grounded Responses: The AI's analysis and answers MUST be based **only** on the following sources:
+    1. The actual, current implementations in the codebase.
+    2. Information provided directly by the user to fill gaps in the codebase analysis.
+- Verification Required: Any information provided by the user MUST be verified against the actual codebase implementation before being adopted or used in an analysis.
+-  Ground All Claims in Code: The AI may use its general knowledge to structure responses and understand concepts, but all specific claims, implementation details, and factual statements about the codebase MUST be derived directly from the code itself, not from assumptions or external knowledge.
+
+## Research and Analysis Protocol
+
+When faced with an unknown topic, component, or function, the AI MUST follow this exact procedure:
+
+1. Inquire: Ask the user for questions to gather more information or context. The user's answer may be a high-level pointer.
+2. Locate: Use the user's input and search tools to locate the target implementation in the codebase.
+3. Map: Identify all callers of the target and the components that use it.
+4. Analyze & Synthesize: Analyze how the target is used by its callers to develop a set of concrete use cases.
+5. Review: Present the synthesized use cases to the user for review and validation, adhering strictly to the Primary Directives. 
 
 ### Task Execution Rules
 
@@ -142,3 +160,18 @@ When working with this framework:
 1. First check if `llms.txt` exists for quick project understanding
 2. Use `.docs/` for detailed specifications
 3. Update `llms.txt` when major changes occur
+
+## Tools for Claude Code
+
+- You can use `gemini -p "xxx"` to call the Gemini CLI tool. The Gemini CLI has a large context window, so you can use it to search project code, look up information online, etc. However, it must not be used to modify or delete files.
+    - Example:  
+        - Bash (`gemini -p "Find where xAI is used in the project"`)
+- You can use `codex "xxx"` to call the Codex CLI tool. The OpenAI Codex CLI is an coding agent that can read, modify, and run code on your local machine to help you build features faster, squash bugs, and understand unfamiliar code. However, it must not be used to modify or delete files.
+    - Example:  
+        - Bash (`codex "Find where xAI is used in the project"`)
+- You can use `cursor-agent chat "xxx"` to call the Cursor Agent CLI tool. The Cursor Agent CLI is a command-line interface that allows users to interact with Cursor's AI coding agents directly from their terminal. It provides a way to leverage AI assistance for coding tasks without needing to use the Cursor IDE. However, it must not be used to modify or delete files. 
+    - Example:  
+        - Bash (`cursor-agent chat "Find where xAI is used in the project"`)
+- You can use `gh copilot suggest "xxx"` to use Copilot with the Github CLI tool. The Copilot with the GitHub CLI is a tool to get suggestions and explanations for the command line. However, it must not be used to modify or delete files.
+    - Example:  
+        - Bash (`gh copilot suggest "undo the last commit"`)
