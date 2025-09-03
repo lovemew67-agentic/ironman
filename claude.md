@@ -16,7 +16,7 @@ This is an AI agent development framework designed for collaborative software en
 ## Agent Architecture
 
 ### Core Agent Types
-w
+
 The system defines specialized agents in `/draft/`:
 
 - `@strategic-planner`: Requirements analysis, technical design, and task planning (no code execution)
@@ -142,3 +142,18 @@ When working with this framework:
 1. First check if `llms.txt` exists for quick project understanding
 2. Use `.docs/` for detailed specifications
 3. Update `llms.txt` when major changes occur
+
+## Tools for Claude Code
+
+- You can use `gemini -p "xxx"` to call the Gemini CLI tool. The Gemini CLI has a large context window, so you can use it to search project code, look up information online, etc. However, it must not be used to modify or delete files.
+    - Example:  
+        - Bash (`gemini -p "Find where xAI is used in the project"`)
+- You can use `codex "xxx"` to call the Codex CLI tool. The OpenAI Codex CLI is an coding agent that can read, modify, and run code on your local machine to help you build features faster, squash bugs, and understand unfamiliar code. However, it must not be used to modify or delete files.
+    - Example:  
+        - Bash (`codex "Find where xAI is used in the project"`)
+- You can use `cursor-agent chat "xxx"` to call the Cursor Agent CLI tool. The Cursor Agent CLI is a command-line interface that allows users to interact with Cursor's AI coding agents directly from their terminal. It provides a way to leverage AI assistance for coding tasks without needing to use the Cursor IDE. However, it must not be used to modify or delete files. 
+    - Example:  
+        - Bash (`cursor-agent chat "Find where xAI is used in the project"`)
+- You can use `gh copilot suggest "xxx"` to use Copilot with the Github CLI tool. The Copilot with the GitHub CLI is a tool to get suggestions and explanations for the command line. However, it must not be used to modify or delete files.
+    - Example:  
+        - Bash (`gh copilot suggest "undo the last commit"`)
